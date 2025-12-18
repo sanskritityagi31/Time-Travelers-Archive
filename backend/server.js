@@ -1,11 +1,5 @@
-// ===============================================
-// Time Travelers Archive - Backend (Final Version)
-// ===============================================
-
 require("dotenv").config();
-const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
@@ -18,6 +12,7 @@ const { OpenAI } = require("openai");
 // Models
 const User = require("./models/User");
 const Event = require("./models/Event");
+
 
 // Middlewares
 const { requireRole } = require("./middleware/roles");
@@ -359,6 +354,11 @@ app.use("/uploads", express.static(uploadDir));
 // ===============================================
 // START SERVER
 // ===============================================
-app.listen(PORT, () =>
-  console.log(`Backend running on port ${PORT}`)
-);
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.log(`Backend running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
+

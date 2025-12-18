@@ -12,6 +12,6 @@ COPY backend/ .
 # build or transpile step if needed (uncomment if present)
 # RUN npm run build
 
-ENV PORT=4000
+ENV PORT=4000 
 EXPOSE 4000
 CMD ["node", "server.js"]
